@@ -45,7 +45,7 @@ local make_command = function(opts)
 				local short_input = Input({
 					position = "50%",
 					size = {
-						width = 25,
+						width = 50,
 					},
 					border = {
 						style = "single",
