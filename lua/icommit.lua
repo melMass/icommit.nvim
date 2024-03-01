@@ -14,7 +14,7 @@ local make_command = function(opts)
 		local menu_items = {}
 
 		for type, emoji in pairs(commit_types) do
-			table.insert(menu_items, Menu.item(emoji .. " " .. type))
+			table.insert(menu_items, Menu.item(type .. ": " .. emoji))
 		end
 
 		local dropdown = Menu({
@@ -99,13 +99,13 @@ local make_command = function(opts)
 
 						long_input:mount()
 
-						local commit_message = string.format("%s: %s", selected_type, value)
+						local commit_message = string.format("%s %s", selected_type, value)
 						local lines = { commit_message, "", "" }
 
 						utils.insert_to_buffer(lines, long_input.winid, long_input.bufnr)
 
 						-- unmount component when cursor leaves buffer
-						long_input:on(event.BufLeave, function() end)
+						-- long_input:on(event.BufLeave, function() end)
 					end,
 				})
 
