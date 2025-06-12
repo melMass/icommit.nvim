@@ -156,7 +156,7 @@ local function ui_breaking()
 
   -- Build menu labels
   local menu_items = {}
-  for _, k in ipairs({ 'yes', 'no' }) do
+  for _, k in ipairs({ 'no', 'yes' }) do
     table.insert(menu_items, Menu.item(k))
   end
 
@@ -220,7 +220,11 @@ local function ui_scope()
     prompt = '',
     on_close = function() end,
     on_submit = function(value)
-      _mem.scope = value
+      if value == nil or value == '' then
+        _mem.scope = nil
+      else
+        _mem.scope = value
+      end
       if _mem.opts.skip_breaking then
         ui_short_commit()
       else
